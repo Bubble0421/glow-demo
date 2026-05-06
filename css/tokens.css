@@ -1,0 +1,18 @@
+:root {
+  --bg: #fdf8f6;
+  --surface: rgba(255,255,255,.72);
+  --surface-solid: #fff;
+  --surface-low: #f7f3f0;
+  --surface-mid: #f1edea;
+  --line: #cac6bb;
+  --primary: #625f4e;
+  --primary-soft: #fff9e3;
+  --primary-fixed: #e8e3cd;
+  --primary-dim: #ccc7b2;
+  --secondary: #5f5e5b;
+  --tertiary: #556064;
+  --tertiary-soft: #effbff;
+  --ink: #1c1b1a;
+  --muted: #49473e;
+  --shadow: rgba(98,95,78,.10);
+}

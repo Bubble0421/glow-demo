@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>小光 · 竖屏演示</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/screens.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text" id="loadingText">AI 正在分析中...</div>
+  </div>
+
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <strong>小光</strong>
+        <span>素人KOC内容增长平台</span>
+      </div>
+      <div class="avatar">光</div>
+    </header>
+
+    <main>
+      <section id="talent" class="screen active">
+        <div class="hero">
+          <span class="eyebrow">天赋发现</span>
+          <h1>找到你已经在做的创作</h1>
+        </div>
+
+        <h2>生活痕迹</h2>
+        <div class="card">
+          <label class="chip">当前主账号</label>
+          <div style="height:12px"></div>
+          <input type="url" value="https://www.xiaohongshu.com/user/profile/demo_creator" aria-label="当前运营的社媒主页链接" />
+        </div>
+
+        <div class="card feed-card selected auth-card" data-source="QQ 空间" data-auth="qq">
+          <div class="icon-box">QQ</div>
+          <div class="copy"><h3>申请访问 QQ 空间</h3><p>读取最近动态、说说和互动反馈。</p></div>
+          <div class="chev">›</div>
+        </div>
+        <div class="card feed-card auth-card" data-source="微信朋友圈" data-auth="wx">
+          <div class="icon-box">微</div>
+          <div class="copy"><h3>申请访问微信朋友圈</h3><p>读取过往图文、九宫格和生活记录。</p></div>
+          <div class="chev">›</div>
+        </div>
+
+        <div class="card">
+          <span class="chip" id="sourceChip">QQ 空间已连接 · 可继续上传截图</span>
+          <div class="trace-grid">
+            <div class="trace-row"><b>最近照片</b><p>上传 5 张最代表你生活风格的截图或照片。</p></div>
+            <div class="trace-row"><b>收藏内容</b><p>上传你最近收藏、点赞或反复看的内容截图。</p></div>
+            <div class="trace-row"><b>聊天表达</b><p>上传一张和朋友聊天时最像你的表达截图，可打码。</p></div>
+          </div>
+          <div style="height:12px"></div>
+          <label class="upload-zone">
+            <input type="file" accept="image/*" multiple hidden>
+            <span><b>上传代表你生活风格的截图</b><p>例如：朋友圈截图、相册九宫格、收藏夹、聊天截图。本地演示不会真正上传。</p></span>
+          </label>
+        </div>
+
+        <h2 style="margin-top:26px">风格反应测试</h2>
+        <div class="card">
+          <div class="quiz-block">
+            <h3>你和朋友约在咖啡厅，提前到了 10 分钟。等待时注意力最可能停在哪里？</h3>
+            <label class="quiz-option"><input type="radio" name="q1"> 隔壁桌一对情侣的对话碎片</label>
+            <label class="quiz-option"><input type="radio" name="q1" checked> 窗外路过的人和他们手里拿的东西</label>
+            <label class="quiz-option"><input type="radio" name="q1"> 咖啡杯上拉花消失的过程</label>
+            <label class="quiz-option"><input type="radio" name="q1"> 自己手机里没回的消息</label>
+            <label class="quiz-option"><input type="radio" name="q1"> 在脑子里安排接下来一周的事</label>
+          </div>
+          <div class="quiz-block">
+            <h3>最近一次你有"想发但没发"的瞬间，可能是因为？</h3>
+            <label class="quiz-option"><input type="radio" name="q2"> 觉得拍得不好看，写得不够好</label>
+            <label class="quiz-option"><input type="radio" name="q2" checked> 怕没人懂，怕显得太矫情</label>
+            <label class="quiz-option"><input type="radio" name="q2"> 觉得太私人，不想给所有人看</label>
+            <label class="quiz-option"><input type="radio" name="q2"> 想发但不知道说什么</label>
+            <label class="quiz-option"><input type="radio" name="q2"> 没这种瞬间，想发就直接发</label>
+          </div>
+          <div class="quiz-block">
+            <h3>完全空闲的下午，你最想去哪里？</h3>
+            <label class="quiz-option"><input type="radio" name="q3" checked> 一个安静的旧书店</label>
+            <label class="quiz-option"><input type="radio" name="q3"> 热闹的菜市场</label>
+            <label class="quiz-option"><input type="radio" name="q3"> 没人的山顶</label>
+            <label class="quiz-option"><input type="radio" name="q3"> 朋友家一起做饭</label>
+            <label class="quiz-option"><input type="radio" name="q3"> 一个新开的展览</label>
+          </div>
+          <div class="quiz-block">
+            <h3>描述昨天发生的一件小事，哪个开头最像你？</h3>
+            <label class="quiz-option"><input type="radio" name="q4"> 昨天遇到一个特别奇怪的人……</label>
+            <label class="quiz-option"><input type="radio" name="q4" checked> 我发现一件事……</label>
+            <label class="quiz-option"><input type="radio" name="q4"> 我妈又……</label>
+            <label class="quiz-option"><input type="radio" name="q4"> 今天好累。</label>
+            <label class="quiz-option"><input type="radio" name="q4"> 听我说……</label>
+          </div>
+        </div>
+
+        <h2 style="margin-top:26px">创作现实条件</h2>
+        <div class="card">
+          <span class="chip">决定你能怎样持续表达</span>
+          <div class="quiz-block"><h3>每天能稳定花多少时间在创作上？</h3><label class="quiz-option"><input type="radio" name="r1" checked> 30 分钟以下</label><label class="quiz-option"><input type="radio" name="r1"> 30 分钟 - 1 小时</label><label class="quiz-option"><input type="radio" name="r1"> 1 - 2 小时</label><label class="quiz-option"><input type="radio" name="r1"> 想做就很多，不想做就一周不碰</label></div>
+          <div class="quiz-block"><h3>拍照 / 拍视频习惯是？</h3><label class="quiz-option"><input type="radio" name="r2" checked> 经常拍，手机里有很多素材</label><label class="quiz-option"><input type="radio" name="r2"> 有需要才拍</label><label class="quiz-option"><input type="radio" name="r2"> 几乎不拍</label><label class="quiz-option"><input type="radio" name="r2"> 喜欢被拍，但自己不太拍</label></div>
+          <div class="quiz-block"><h3>生活模式更接近？</h3><label class="quiz-option"><input type="radio" name="r3" checked> 规律稳定：路线、人和场景相对固定</label><label class="quiz-option"><input type="radio" name="r3"> 多变流动：新地方、新朋友很多</label><label class="quiz-option"><input type="radio" name="r3"> 两者都有</label></div>
+          <div class="quiz-block"><h3>公开发声时会感到？</h3><label class="quiz-option"><input type="radio" name="r4"> 完全自在</label><label class="quiz-option"><input type="radio" name="r4" checked> 有点紧张但能克服</label><label class="quiz-option"><input type="radio" name="r4"> 非常需要勇气</label><label class="quiz-option"><input type="radio" name="r4"> 抗拒露脸或真名</label></div>
+          <div class="quiz-block"><h3>最不喜欢创作的哪个环节？</h3><label class="quiz-option"><input type="radio" name="r5"> 想选题</label><label class="quiz-option"><input type="radio" name="r5"> 拍摄 / 记录</label><label class="quiz-option"><input type="radio" name="r5" checked> 剪辑 / 排版</label><label class="quiz-option"><input type="radio" name="r5"> 写文案</label><label class="quiz-option"><input type="radio" name="r5"> 看数据或回评论</label></div>
+        </div>
+
+        <div class="card" style="margin-top:20px">
+          <span class="chip">补充你的真实表达</span>
+          <p style="margin:10px 0 8px">粘贴一段最近写的话、说说或日记，AI 会读出你的表达方式。</p>
+          <textarea id="userText" style="min-height:130px;font-size:13px">今天又一个人去图书馆。雨下得很大，四楼靠窗的位置空着。
+打开论文，敲了一行字又删了。突然觉得，能这样安静地待一下午，也是一种奢侈。
+
+昨天和室友聊到凌晨两点，关于以后想做什么。
+她说想去大厂，我说我也不知道。可能我比较喜欢慢一点的事情吧。
+
+食堂阿姨今天多给了我一勺菜，说我看起来瘦了。小事，但是会一直记得。</textarea>
+        </div>
+
+        <button class="btn dark" id="analyzeBtn">生成天然创作位</button>
+      </section>
+
+      <section id="persona" class="screen">
+        <div class="hero">
+          <span class="eyebrow">天然创作位</span>
+          <h1>你已经在这样表达了</h1>
+        </div>
+
+        <div class="card persona-report">
+          <div class="report-top">
+            <div><span class="eyebrow" style="margin-bottom:8px">你的天然创作位</span><h2 id="personaName">生活里被忽略的瞬间</h2></div>
+            <div class="report-score"><b id="personaScore">91</b><span>适配度</span></div>
+          </div>
+          <p class="report-desc" id="personaDesc">你的相册、收藏和未发布文字显示：你适合用短图文记录日常生活里的细节、地点和情绪，并把这些内容整理成稳定栏目。</p>
+          <div class="report-bottom">
+            <div><span>内容方向</span><b id="personaDirection">日常治愈系观察</b></div>
+            <div><span>内容形态</span><b id="personaFormat">短图文为主</b></div>
+            <div><span>发布节奏</span><b id="personaRhythm">每周 2-3 条</b></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="chip">推荐配置</span>
+          <div class="evidence-item"><b>平台主场</b><p id="platformMain">视频号适合慢节奏图文和短视频；小红书适合寻找同好、同圈层的真实生活共鸣。</p></div>
+          <div class="evidence-item"><b>优势赛道</b><p id="advantageTrack">日常角落、生活真实记录、独处打卡、身边低预算好去处。</p></div>
+        </div>
+
+        <div class="card">
+          <span class="chip">判断依据</span>
+          <div class="evidence-item"><b>生活痕迹</b><p id="evidenceLife">最近照片和截图以咖啡店、街头散步、城市展览和夜间氛围为主，说明你的眼睛天然会被地点氛围和细节吸引。</p></div>
+          <div class="evidence-item"><b>社媒动态</b><p id="evidenceSocial">你过往动态多是短文字 + 场景照片，很少强观点输出；这对应"氛围型图文"和"观察型记录"。</p></div>
+          <div class="evidence-item"><b>投射题</b><p id="evidenceQuiz">你选择了窗外路人、旧书店、想发但怕没人懂，说明真实动机更接近"被理解"和"记录不被注意的世界"。</p></div>
+          <div class="evidence-item"><b>现实约束</b><p id="evidenceConstraints">你有拍照素材，但不想花太多时间剪辑；因此短图文、低剪辑短视频和固定栏目比重剪辑视频更可持续。</p></div>
+        </div>
+
+        <button class="btn dark" onclick="showScreen('radar')">进入小热点雷达</button>
+      </section>
+
+      <section id="radar" class="screen">
+        <div class="hero"><span class="eyebrow">小热点雷达</span><h1>本周可切入话题</h1></div>
+
+        <div id="radarTopicsContainer">
+          <div class="radar-loading" id="radarLoading">
+            <div class="radar-spinner"></div>
+            <p>先完成天赋发现，小光会根据你的人设生成专属话题</p>
+          </div>
+        </div>
+
+      </section>
+
+      <section id="create" class="screen">
+        <div class="hero"><span class="eyebrow">创作探索</span><h1>找到今天想拍的那一刻</h1></div>
+
+        <div class="card" style="padding-bottom:16px">
+          <div class="constellation-wrap" id="constellationWrap">
+            <svg class="constellation-svg" id="constellationSvg">
+              <defs>
+                <filter id="lineGlow" x="-80%" y="-80%" width="260%" height="260%">
+                  <feGaussianBlur stdDeviation="2.2" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+            </svg>
+          </div>
+          <div class="selected-chips" id="selectedChips">
+            <span style="font-size:11px;color:var(--muted);font-weight:700">点亮感觉词开始探索</span>
+          </div>
+          <button class="btn dark" id="constellationGenBtn" style="display:none;width:100%">用这些感觉生成灵感 →</button>
+          <button class="btn" id="constellationResetBtn" style="display:none;width:100%;margin-top:8px">✕ 清空重选</button>
+          <div id="constellationResult" style="display:none;margin-top:16px">
+            <div style="height:1px;background:var(--line);margin-bottom:14px;opacity:.35"></div>
+            <div class="tree-result-title" id="consResultTitle"></div>
+            <div class="tree-result-desc" id="consResultDesc"></div>
+            <div class="tree-result-shot" id="consResultShot"></div>
+            <div class="tree-result-tags" id="consResultTags"></div>
+            <div style="display:flex;gap:10px;margin-top:14px">
+              <button class="btn" id="consSaveBtn" style="flex:1">保存到日志</button>
+              <button class="btn dark" id="consGenPlanBtn" style="flex:1">生成完整方案 →</button>
+            </div>
+            <div id="consPlanResult" style="margin-top:12px"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="log" class="screen">
+        <div class="hero"><span class="eyebrow">成长日志</span><h1>今天也完成一点点</h1></div>
+
+        <div class="card">
+          <div class="row"><div><h2>5 月创作日历</h2></div><span class="chip">第 7 天</span></div>
+          <div class="calendar">
+            <div class="day done">1</div><div class="day done">2</div><div class="day done">3</div><div class="day">4</div><div class="day done">5</div><div class="day done">6</div><div class="day today">7</div>
+            <div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div>
+          </div>
+        </div>
+
+
+        <div id="workshop" class="card" style="display:none">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <span class="chip">创作日志工作台</span>
+            <span id="workshopCount" style="font-size:11px;color:var(--muted);font-weight:900">0 个话题</span>
+          </div>
+          <div id="workshopItems"></div>
+        </div>
+
+        <div class="card" id="todayTasksCard">
+          <div class="row" style="align-items:center">
+            <h2 style="margin:0">今日任务</h2>
+            <span class="chip" id="taskProgress">0 / 3 完成</span>
+          </div>
+          <p id="taskProjectHint" style="font-size:12px;color:var(--muted);margin:6px 0 10px;display:none"></p>
+          <div id="taskList">
+            <div class="task-item" id="task1">
+              <div class="task-check" id="taskCheck1">✓</div>
+              <div class="task-body"><b>完成选题确认</b><p>选择或保存一个今天想拍的话题。</p></div>
+            </div>
+            <div class="task-item" id="task2">
+              <div class="task-check" id="taskCheck2">✓</div>
+              <div class="task-body"><b>拍摄素材</b><p>按照创作方案完成图片/视频拍摄，不露脸也可以。</p></div>
+            </div>
+            <div class="task-item" id="task3">
+              <div class="task-check" id="taskCheck3">✓</div>
+              <div class="task-body"><b>发布并回填数据</b><p>发布后记录点赞、收藏、评论，小光会持续优化你的人设。</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="row">
+            <div><h2>内容洞察</h2><p>近 7 天表现，不用和别人比，只看自己的节奏。</p></div>
+          </div>
+          <div class="mini-metrics">
+            <div class="mini-metric"><small>浏览</small><b>1,842</b></div>
+            <div class="mini-metric"><small>收藏率</small><b>12.8%</b></div>
+            <div class="mini-metric"><small>评论</small><b>31</b></div>
+          </div>
+          <div class="insight-chart">
+            <div class="insight-row"><span>地点兴趣</span><div class="insight-bar"><i style="--w:86%"></i></div><b>高</b></div>
+            <div class="insight-row"><span>情绪共鸣</span><div class="insight-bar"><i style="--w:78%"></i></div><b>稳</b></div>
+            <div class="insight-row"><span>互动意愿</span><div class="insight-bar"><i style="--w:62%"></i></div><b>升</b></div>
+          </div>
+          <div class="evidence-item"><b>小光观察</b><p>上一条内容的收藏率高于点赞率，说明大家把它当成"之后还想回来看"的内容。下一条继续保留真实细节和情绪，不需要突然变得更吵。</p></div>
+          <div class="evidence-item"><b>如果状态好</b><p>可以补一条"这栋图书馆适合什么时间来"的图文；如果今天累了，只整理 3 张照片也算完成任务。</p></div>
+        </div>
+
+        <div class="card">
+          <h2>分析你的内容表现</h2>
+
+          <div class="review-tabs" style="margin:12px 0">
+            <button class="review-tab active" data-tab="single">单条内容</button>
+            <button class="review-tab" data-tab="account">整个账号</button>
+          </div>
+
+          <div id="reviewTabSingle">
+            <p style="font-size:12px;color:var(--muted);margin:0 0 8px">选择要复盘的内容：</p>
+            <div id="postSelector">
+              <div class="post-select-item active" data-title="期末周的空座位" data-likes="286" data-comments="31" data-followers="38">
+                <div class="post-select-title">期末周的空座位</div>
+                <div class="post-select-stats">286 赞 · 31 评论 · +38 粉</div>
+              </div>
+              <div class="post-select-item" data-title="凌晨图书馆的人" data-likes="124" data-comments="18" data-followers="22">
+                <div class="post-select-title">凌晨图书馆的人</div>
+                <div class="post-select-stats">124 赞 · 18 评论 · +22 粉</div>
+              </div>
+              <div class="post-select-item" data-title="宿舍楼道深夜" data-likes="89" data-comments="12" data-followers="15">
+                <div class="post-select-title">宿舍楼道深夜</div>
+                <div class="post-select-stats">89 赞 · 12 评论 · +15 粉</div>
+              </div>
+            </div>
+            <button class="btn dark" id="reviewBtn" style="width:100%;margin-top:12px">生成单条复盘报告</button>
+            <div id="reviewResult" style="display:none"></div>
+          </div>
+
+          <div id="reviewTabAccount" style="display:none">
+            <div class="evidence-item" style="margin:8px 0"><b>分析范围</b><p>近 7 天 · 3 条内容 · 总点赞 499 · 总涨粉 75</p></div>
+            <button class="btn dark" id="reviewAccountBtn" style="width:100%;margin-top:12px">生成账号整体复盘</button>
+            <div id="accountReviewResult" style="display:none"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="archive" class="screen">
+        <div class="hero">
+          <span class="eyebrow">人设档案</span>
+          <h1>小光正在慢慢认识你</h1>
+        </div>
+
+        <div class="card persona-report">
+          <div class="report-top">
+            <div><span class="eyebrow" style="margin-bottom:8px">当前版本</span><h2>细腻打卡型观察者</h2></div>
+            <div class="report-score"><b>v3</b><span>已迭代</span></div>
+          </div>
+          <p class="report-desc">21 天数据持续验证：你的内容更适合"具体地点 + 真实情绪 + 可复刻路线"。这不是固定标签，而是一份会继续生长的创作档案。</p>
+          <div class="report-bottom">
+            <div><span>稳定根基</span><b>观察与留白</b></div>
+            <div><span>新发现</span><b>地点收藏率高</b></div>
+            <div><span>下一步</span><b>固定栏目</b></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="chip">小光学到的关于你的事</span>
+          <div class="evidence-item"><b>已验证 5 次</b><p>标题里出现"时间 + 地点"时，用户更容易停留，比如"凌晨 3 点的图书馆"。</p></div>
+          <div class="evidence-item"><b>已验证 3 次</b><p>陌生人背影、空座位、窗口灯光这类"克制画面"更适合你的表达。</p></div>
+          <div class="evidence-item"><b>新发现</b><p>你近期开始尝试更明确的地点推荐，收藏率比纯情绪记录更高。</p></div>
+        </div>
+
+        <div class="card">
+          <span class="chip">人设演化时间轴</span>
+          <div class="evolution">
+            <div class="version-card"><strong>v1.0</strong><div><b>基础人设</b><p>识别出你偏好日常角落、城市散步和短文字记录。</p></div></div>
+            <div class="version-card"><strong>v2.0</strong><div><b>发现细节优势</b><p>确认"空镜 + 一句话"比长文更适合你。</p></div></div>
+            <div class="version-card"><strong>v3.0</strong><div><b>表达力增强</b><p>建议建立"日常角落观察"固定栏目，降低每次选题压力。</p></div></div>
+          </div>
+        </div>
+
+        <div class="card" id="archiveSavedCard" style="display:none">
+          <span class="chip">创作归档</span>
+          <p style="font-size:11px;color:var(--muted);margin:8px 0 14px;font-weight:700">每一条保存都会在这里累积 · 点击日志可继续细化</p>
+          <div id="archiveSavedList"></div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-target="talent">天赋</button>
+      <button class="nav-btn" data-target="radar">雷达</button>
+      <button class="nav-btn" data-target="create">创作</button>
+      <button class="nav-btn" data-target="log">日志</button>
+      <button class="nav-btn" data-target="archive">人设</button>
+    </nav>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="modal" id="authModal">
+    <div class="modal-card">
+      <span class="chip" id="modalChip">授权确认</span>
+      <h2 id="modalTitle" style="margin-top:12px">申请访问</h2>
+      <p id="modalText">小光将只读取你主动授权的历史表达，用于生成创作倾向报告。</p>
+      <div class="modal-actions">
+        <button class="ghost-btn" id="cancelAuth">取消</button>
+        <button class="btn dark" id="confirmAuth">允许访问</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
