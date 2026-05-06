@@ -1,22 +1,20 @@
 import json
-import signal
+import concurrent.futures
 
 from flask import Blueprint, jsonify, request
 
 from ai import generator, prompts, schemas, mock as ai_mock
 
 
-def _with_timeout(fn, seconds=90):
-    """Run fn() with a hard timeout on Linux/Mac (SIGALRM)."""
-    def _handler(sig, frame):
-        raise TimeoutError("AI call timed out")
-    old = signal.signal(signal.SIGALRM, _handler)
-    signal.alarm(seconds)
+_executor = concurrent.futures.ThreadPoolExecutor(max_workers=2)
+
+
+def _run_with_timeout(fn, seconds=100):
+    future = _executor.submit(fn)
     try:
-        return fn()
-    finally:
-        signal.alarm(0)
-        signal.signal(signal.SIGALRM, old)
+        return future.result(timeout=seconds)
+    except concurrent.futures.TimeoutError:
+        raise TimeoutError("AI call timed out after %ds" % seconds)
 
 bp = Blueprint("api", __name__, url_prefix="/api")
 
@@ -75,9 +73,8 @@ def api_topics():
             content_direction=persona.get("content_direction", ""),
             dimensions=dims_str,
         )
-        # Hard 85-second timeout so gunicorn never kills us mid-request
         topics = schemas.normalize_topics(
-            _with_timeout(lambda: generator.generate_json(prompt), seconds=85)
+            _run_with_timeout(lambda: generator.generate_json(prompt), seconds=100)
         )
         return jsonify({"ok": True, "topics": topics})
     except (TimeoutError, Exception) as e:
