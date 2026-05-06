@@ -7,6 +7,11 @@ from ai import generator, prompts, schemas
 bp = Blueprint("api", __name__, url_prefix="/api")
 
 
+@bp.route("/ping", methods=["GET", "POST"])
+def api_ping():
+    return jsonify({"ok": True, "msg": "pong v2"})
+
+
 @bp.route("/persona", methods=["POST"])
 def api_persona():
     body = request.get_json(force=True)
