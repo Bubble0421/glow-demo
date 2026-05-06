@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: glow-demo
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn server:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: TENCENT_SECRET_ID
+        sync: false
+      - key: TENCENT_SECRET_KEY
+        sync: false
+      - key: HUNYUAN_MODEL
+        value: hunyuan-pro
