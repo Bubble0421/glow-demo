@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>小光 · 竖屏演示</title>
+  <title>小光 GLOW · AI KOC 增长 Agent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -29,6 +29,25 @@
       <div class="avatar">光</div>
     </header>
 
+    <div class="app-body">
+    <nav class="bottom-nav">
+      <div class="nav-brand">✦ 小光</div>
+      <button class="nav-btn active" data-target="talent">
+        <span class="nav-icon">◈</span><span class="nav-label">天赋发现</span>
+      </button>
+      <button class="nav-btn" data-target="radar">
+        <span class="nav-icon">◉</span><span class="nav-label">小热点雷达</span>
+      </button>
+      <button class="nav-btn" data-target="create">
+        <span class="nav-icon">✎</span><span class="nav-label">创作工坊</span>
+      </button>
+      <button class="nav-btn" data-target="log">
+        <span class="nav-icon">▦</span><span class="nav-label">成长日志</span>
+      </button>
+      <button class="nav-btn" data-target="archive">
+        <span class="nav-icon">◎</span><span class="nav-label">人设档案</span>
+      </button>
+    </nav>
     <main>
       <section id="talent" class="screen active">
         <div class="hero">
@@ -117,13 +136,13 @@
         <div class="card" style="margin-top:20px">
           <span class="chip">补充你的真实表达</span>
           <p style="margin:10px 0 8px">粘贴一段最近写的话、说说或日记，AI 会读出你的表达方式。</p>
-          <textarea id="userText" style="min-height:130px;font-size:13px">今天又一个人去图书馆。雨下得很大，四楼靠窗的位置空着。
-打开论文，敲了一行字又删了。突然觉得，能这样安静地待一下午，也是一种奢侈。
+          <textarea id="userText" style="min-height:130px;font-size:13px">今天一个人在咖啡馆坐了一下午。窗边刚好有位置，雨下得很大。
+打开电脑，盯着屏幕发了半天呆。突然觉得，能这样安静地待一下午，也是一种奢侈。
 
-昨天和室友聊到凌晨两点，关于以后想做什么。
-她说想去大厂，我说我也不知道。可能我比较喜欢慢一点的事情吧。
+昨晚和朋友聊到很晚，关于以后想做什么。
+她说想创业，我说我也说不清楚。可能我比较喜欢慢一点的事情吧。
 
-食堂阿姨今天多给了我一勺菜，说我看起来瘦了。小事，但是会一直记得。</textarea>
+便利店阿姨今天多给了我一个袋子，说"外面在下雨"。小事，但是会一直记得。</textarea>
         </div>
 
         <button class="btn dark" id="analyzeBtn">生成天然创作位</button>
@@ -282,16 +301,16 @@
           <div id="reviewTabSingle">
             <p style="font-size:12px;color:var(--muted);margin:0 0 8px">选择要复盘的内容：</p>
             <div id="postSelector">
-              <div class="post-select-item active" data-title="期末周的空座位" data-likes="286" data-comments="31" data-followers="38">
-                <div class="post-select-title">期末周的空座位</div>
+              <div class="post-select-item active" data-title="深夜便利店的光" data-likes="286" data-comments="31" data-followers="38">
+                <div class="post-select-title">深夜便利店的光</div>
                 <div class="post-select-stats">286 赞 · 31 评论 · +38 粉</div>
               </div>
-              <div class="post-select-item" data-title="凌晨图书馆的人" data-likes="124" data-comments="18" data-followers="22">
-                <div class="post-select-title">凌晨图书馆的人</div>
+              <div class="post-select-item" data-title="凌晨还亮着的那盏灯" data-likes="124" data-comments="18" data-followers="22">
+                <div class="post-select-title">凌晨还亮着的那盏灯</div>
                 <div class="post-select-stats">124 赞 · 18 评论 · +22 粉</div>
               </div>
-              <div class="post-select-item" data-title="宿舍楼道深夜" data-likes="89" data-comments="12" data-followers="15">
-                <div class="post-select-title">宿舍楼道深夜</div>
+              <div class="post-select-item" data-title="下班路上的陌生人背影" data-likes="89" data-comments="12" data-followers="15">
+                <div class="post-select-title">下班路上的陌生人背影</div>
                 <div class="post-select-stats">89 赞 · 12 评论 · +15 粉</div>
               </div>
             </div>
@@ -328,7 +347,7 @@
 
         <div class="card">
           <span class="chip">小光学到的关于你的事</span>
-          <div class="evidence-item"><b>已验证 5 次</b><p>标题里出现"时间 + 地点"时，用户更容易停留，比如"凌晨 3 点的图书馆"。</p></div>
+          <div class="evidence-item"><b>已验证 5 次</b><p>标题里出现"时间 + 地点"时，用户更容易停留，比如"凌晨 3 点还亮着的那盏灯"。</p></div>
           <div class="evidence-item"><b>已验证 3 次</b><p>陌生人背影、空座位、窗口灯光这类"克制画面"更适合你的表达。</p></div>
           <div class="evidence-item"><b>新发现</b><p>你近期开始尝试更明确的地点推荐，收藏率比纯情绪记录更高。</p></div>
         </div>
@@ -349,14 +368,7 @@
         </div>
       </section>
     </main>
-
-    <nav class="bottom-nav">
-      <button class="nav-btn active" data-target="talent">天赋</button>
-      <button class="nav-btn" data-target="radar">雷达</button>
-      <button class="nav-btn" data-target="create">创作</button>
-      <button class="nav-btn" data-target="log">日志</button>
-      <button class="nav-btn" data-target="archive">人设</button>
-    </nav>
+    </div>
   </div>
 
   <div class="toast" id="toast"></div>
