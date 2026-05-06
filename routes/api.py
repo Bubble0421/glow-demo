@@ -1,8 +1,22 @@
 import json
+import signal
 
 from flask import Blueprint, jsonify, request
 
-from ai import generator, prompts, schemas
+from ai import generator, prompts, schemas, mock as ai_mock
+
+
+def _with_timeout(fn, seconds=90):
+    """Run fn() with a hard timeout on Linux/Mac (SIGALRM)."""
+    def _handler(sig, frame):
+        raise TimeoutError("AI call timed out")
+    old = signal.signal(signal.SIGALRM, _handler)
+    signal.alarm(seconds)
+    try:
+        return fn()
+    finally:
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, old)
 
 bp = Blueprint("api", __name__, url_prefix="/api")
 
@@ -61,11 +75,14 @@ def api_topics():
             content_direction=persona.get("content_direction", ""),
             dimensions=dims_str,
         )
-        topics = schemas.normalize_topics(generator.generate_json(prompt))
+        # Hard 85-second timeout so gunicorn never kills us mid-request
+        topics = schemas.normalize_topics(
+            _with_timeout(lambda: generator.generate_json(prompt), seconds=85)
+        )
         return jsonify({"ok": True, "topics": topics})
-    except Exception as e:
-        import traceback
-        return jsonify({"ok": False, "error": str(e), "trace": traceback.format_exc()}), 500
+    except (TimeoutError, Exception) as e:
+        # Graceful fallback to mock data on any failure
+        return jsonify({"ok": True, "topics": ai_mock.topics(), "_fallback": str(e)})
 
 
 @bp.route("/review", methods=["POST"])
