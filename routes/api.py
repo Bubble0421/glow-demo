@@ -44,22 +44,23 @@ def api_create():
 
 @bp.route("/topics", methods=["POST"])
 def api_topics():
-    body    = request.get_json(force=True)
-    persona = body.get("persona", {})
-    dims    = persona.get("dimensions", {})
-    dims_str = "、".join(f"{k}={v}" for k, v in dims.items()) if dims else "未知"
-    prompt = prompts.render(
-        "topics",
-        persona_name=persona.get("persona_name", "细腻观察者"),
-        persona_description=persona.get("persona_description", ""),
-        content_direction=persona.get("content_direction", ""),
-        dimensions=dims_str,
-    )
     try:
+        body    = request.get_json(force=True)
+        persona = body.get("persona", {})
+        dims    = persona.get("dimensions", {})
+        dims_str = ", ".join(f"{k}={v}" for k, v in dims.items()) if dims else "未知"
+        prompt = prompts.render(
+            "topics",
+            persona_name=persona.get("persona_name", "细腻观察者"),
+            persona_description=persona.get("persona_description", ""),
+            content_direction=persona.get("content_direction", ""),
+            dimensions=dims_str,
+        )
         topics = schemas.normalize_topics(generator.generate_json(prompt))
         return jsonify({"ok": True, "topics": topics})
     except Exception as e:
-        return jsonify({"ok": False, "error": str(e)}), 500
+        import traceback
+        return jsonify({"ok": False, "error": str(e), "trace": traceback.format_exc()}), 500
 
 
 @bp.route("/review", methods=["POST"])
