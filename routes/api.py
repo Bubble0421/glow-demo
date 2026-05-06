@@ -1,20 +1,8 @@
 import json
-import concurrent.futures
 
 from flask import Blueprint, jsonify, request
 
 from ai import generator, prompts, schemas, mock as ai_mock
-
-
-_executor = concurrent.futures.ThreadPoolExecutor(max_workers=2)
-
-
-def _run_with_timeout(fn, seconds=100):
-    future = _executor.submit(fn)
-    try:
-        return future.result(timeout=seconds)
-    except concurrent.futures.TimeoutError:
-        raise TimeoutError("AI call timed out after %ds" % seconds)
 
 bp = Blueprint("api", __name__, url_prefix="/api")
 
@@ -73,12 +61,9 @@ def api_topics():
             content_direction=persona.get("content_direction", ""),
             dimensions=dims_str,
         )
-        topics = schemas.normalize_topics(
-            _run_with_timeout(lambda: generator.generate_json(prompt), seconds=100)
-        )
+        topics = schemas.normalize_topics(generator.generate_json(prompt))
         return jsonify({"ok": True, "topics": topics})
-    except (TimeoutError, Exception) as e:
-        # Graceful fallback to mock data on any failure
+    except Exception as e:
         return jsonify({"ok": True, "topics": ai_mock.topics(), "_fallback": str(e)})
 
 
